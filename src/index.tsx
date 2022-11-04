@@ -1,7 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { ThemeProvider } from 'styled-components';
 import App from './App';
+import GlobalStyle from './GlobalStyle';
+import { store } from './store';
+import theme from './theme';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(
@@ -9,7 +14,14 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          <App />
+          <GlobalStyle />
+        </ThemeProvider>
+      </Provider>
+    </Router>
   </React.StrictMode>
 );
 
